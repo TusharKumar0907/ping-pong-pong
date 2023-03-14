@@ -1,0 +1,28 @@
+body{
+    background-color: red;
+}
+
+#para{
+    text-align: center;
+    font-size: 50px;
+    padding-top: 5%;
+}
+
+
+#list {
+    text-align: center;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    font-size: 30px;
+    border: 5px solid black;
+    padding-bottom: 5rem;
+    padding-top: 5rem;
+  }
+
+#butt{
+    text-align:center;
+}
+
+button{
+    background-color: orange;
+}
