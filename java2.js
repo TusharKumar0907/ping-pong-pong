@@ -5,7 +5,7 @@ const canvaswidth = canvas.width;
 const canvasheight = canvas.height;
 let ballx = canvasheight/2;
 let bally = canvaswidth/2; 
-const ballspeed = 2;
+let ballspeed = 1;
 let balldirection = -1;
 
 let paddle1 = {
@@ -21,6 +21,7 @@ let paddle2 = {
   x:canvaswidth-25,
   y:0
 };
+
 
 //paddle banao
 function makepaddle(){
@@ -67,28 +68,50 @@ function drawball(){
   ctx.closePath();
 };
 
-
+// ball ko move karao aur dekho bhar toh nhi ja rhi
 function draw(){
-  
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawball();
-
   ballx += balldirection*ballspeed;
-  if(ballx<=0+20 || ballx>=canvasheight-20)balldirection = -1*balldirection;
+  if(ballx<=0+20){
+    alert("right player wins");
+    window.location.reload();
+    return;
+  }
+  if(ballx>=canvasheight-20){
+    alert("left player wins");
+    window.location.reload();
+    return;
+  }
   bally += balldirection*ballspeed;
   if(bally<=0+20 || bally>=canvaswidth-20)balldirection = -1*balldirection;
 
-  if(ballx<=paddle1.x+paddle1.width+20 && bally>paddle1.y && bally<paddle1.height)balldirection = -1*balldirection;
-  if(ballx<=paddle2.x+paddle2.width+20 && bally>paddle2.y && bally<paddle2.height)balldirection = -1*balldirection;
+  if(ballx<=paddle1.x + paddle1.width + 20){
+    if(bally>paddle1.y && bally<paddle1.y + paddle1.height){
+      balldirection = -1*balldirection;
+      ballspeed += 1;
+    }
+  }
+
+
+  if(ballx>=paddle2.x - 20){
+    if(bally>paddle2.y && bally<paddle2.y + paddle2.height){
+      balldirection = -1*balldirection;
+      ballspeed += 1;
+    }
+  }
+  
+  
 };
 
 
 function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  setInterval(draw() , 100);
   makepaddle();
+  draw();
   window.requestAnimationFrame(update);
 };
 
 update();
+
+
 
