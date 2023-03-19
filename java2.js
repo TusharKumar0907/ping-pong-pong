@@ -88,7 +88,6 @@ function draw(){
   if(ballx<=paddle1.x + paddle1.width + 20){
     if(bally>paddle1.y && bally<paddle1.y + paddle1.height){
       balldirection = -1*balldirection;
-      ballspeed += 1;
     }
   }
 
@@ -96,7 +95,6 @@ function draw(){
   if(ballx>=paddle2.x - 20){
     if(bally>paddle2.y && bally<paddle2.y + paddle2.height){
       balldirection = -1*balldirection;
-      ballspeed += 1;
     }
   }
   
